@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 2.8)
+add_definitions(-std=c++11)
+add_definitions(-Wall)
+set(PROJECT_NAME_STR SEQL)
+set(CMAKE_CXX_STANDARD 11)
+project({PROJECT_NAME_ST} C CXX)
+add_subdirectory (experiments)
+## Install the executable to bin fodler
+set(EXECUTABLE_OUTPUT_PATH bin)
+
+add_library(Sq_learn seql_learn.cpp seql_learn.h)
+add_library(Sq_predict seql_predictor.cpp seql_predictor.h)
+add_library(SNode SNode.cpp SNode.h)
+add_library(LinearModel LinearModel.cpp LinearModel.h)
+add_library(common_string str2node_string_symbol.cpp common_string_symbol.h)

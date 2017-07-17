@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -z ${SEQLBASE+x} ];
+   then
+       echo "SEQLBASE not set. Set this enviorment variable."
+          exit 1;
+fi
+mkdir vary_alphabet
+cd vary_alphabet
+cp ../alphabetsize runscript
+for run in $(seq 0 4);
+do
+    (
+        mkdir -p run${run};
+    cd run${run};
+    for alphabet_size in 2 4 8 16 32;
+    do
+        mkdir -p size${alphabet_size};
+        cd size${alphabet_size};
+        python $SEQLBASE/tools/toydata/generation/generateToySequenceReg.py -n 10000 -l 5000 -s $alphabet_size -o generated_data -a 5 -A 2;
+        seql_regression -v 1 -o 3 -c 0.01 -O seql${alphabet_size}.itrStats.csv generated_data.train generated_data.test seql${alphabet_size} /dev/null > seql${alphabet_size}.output;
+        python $SEQLBASE/othermethods/SotA_methods.py 3 generated_data.train generated_data.test;
+        python $SEQLBASE/othermethods/SotA_methods.py 5 generated_data.train generated_data.test;
+        cd ../;
+    done
+    cd .. )&
+done
+wait
