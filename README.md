@@ -2,8 +2,8 @@
 This repository contains all the code to reproduce the experiments in the paper:
 
 **Efficient Sequence Regression by Learning Linear Models in All-Subsequence Space**  
-by Severin Gsponer, Barry Smyth and Georgiana Ifrim.
-
+Gsponer S., Smyth B., Ifrim G. (2017) Efficient Sequence Regression by Learning Linear Models in All-Subsequence Space. In: Ceci M., Hollmén J., Todorovski L., Vens C., Džeroski S. (eds) Machine Learning and Knowledge Discovery in Databases. ECML PKDD 2017. Lecture Notes in Computer Science, vol 10535. Springer, Cham
+https://doi.org/10.1007/978-3-319-71246-8_3
 
 The repository consists of four parts:
 * SqLoss: Basic algorithm for linear sequence regression with squared error loss.
